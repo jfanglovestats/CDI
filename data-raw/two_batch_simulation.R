@@ -84,7 +84,7 @@ for(g in seq_len(para.set$ngene)){
   tmp <- NULL
   for(cl in seq_len(para.set$K)){
     cur.mu <- mu2[g,cl]
-    if(cur.mu == 0){ tmp = c(tmp, rep(0, para.set$b2_ncell[cl]))}
+    if(cur.mu == 0){ tmp <- c(tmp, rep(0, para.set$b2_ncell[cl]))}
     else{ 
     	tmp <- c(tmp, rnbinom(para.set$b2_ncell[cl], mu = cur.mu, size = r[g,cl]))
     	}
@@ -113,9 +113,8 @@ two_batch_matrix_batch <- paste0("batch",
 
 ## compress the count matrix
 usethis::use_data(two_batch_matrix, compress = "bzip2", overwrite=TRUE)
-# save(two_batch_matrix, file = "./data/two_batch_matrix.RData")
-# save(two_batch_matrix_celltype, 
-# 	file = "./data/two_batch_matrix_celltype.RData")
+save(two_batch_matrix_celltype,
+	file = "./data/two_batch_matrix_celltype.RData")
 save(two_batch_matrix_batch, 
 	file = "./data/two_batch_matrix_batch.RData")
 

@@ -167,7 +167,6 @@ calculate_CDI_oneset <- function(
     }
     batch_ct_list <- split(batch_label, f = candidate_label)
     size_ct_list <- split(cell_size_factor, f = candidate_label)
-    # bp = BiocParallel::MulticoreParam(ncore)
     sub_gclist <- split(sub_gcmat, f = rownames(sub_gcmat))
     neg_llk_list <- bplapply(sub_gclist, 
                             multi_batch_one_gene_likelihood,  
@@ -211,7 +210,7 @@ calculate_CDI_oneset <- function(
 #'
 #' @examples
 #' 
-#' ng = 100; nc = 100
+#' ng <- 100; nc <- 100
 #' set.seed(1)
 #' X <- cbind(
 #' 	matrix(
@@ -320,7 +319,7 @@ size_factor <- function(gcmat){
 #'
 #' @examples
 #' ## Simulate count matrix, batch, and cell type labels
-#' ng = 100; nc = 100
+#' ng <- 100; nc <- 100
 #' set.seed(1)
 #' X <- cbind(
 #' 	matrix(
@@ -416,7 +415,7 @@ calculate_CDI <- function(
 	BPPARAM = SerialParam()){
 	# Initialize a BiocParallel object
 	## if cand_lab_df is a vector or a data frame with one column
-	vec_1col_df = ifelse(is.vector(cand_lab_df), TRUE, dim(cand_lab_df)[2] == 1)
+	vec_1col_df <- ifelse(is.vector(cand_lab_df), TRUE, dim(cand_lab_df)[2] == 1)
   if(vec_1col_df){
     return(calculate_CDI_oneset(
     	sub_gcmat = sub_gcmat, 
